@@ -22,19 +22,19 @@ console.log(arrow(2,3))
 console.log(arrow2(2,3))
 
 function dec(num, num2) {
-    console.log(num + num2);
+  return num + num2;
 }
 
 const exp = function(num1, num2) {
-    console.log(num + num2);
-  }
+  return num + num2;
+}
 
-let arrow2 = (num, num2) => {
-	return num + num2
+let arrow = (num, num2) => {
+	return num + num2;
 } 
 
-var arrow = (num, num2) => {
-	console.log(num + num2); 
+var arrow2 = (num, num2) => {
+	return num + num2;
 } 
 ```
 
@@ -159,3 +159,24 @@ else
 하지만 `if` 문을 사용하면 조건의 표현이 보다 자유롭다는 장점이 있습니다. 
 만약 `arg` 의 자료형이 문자가 아닌 숫자였다면, `if` 문에서 `if (arg < 5)` 로 훨씬 간결하게 작성할 수 있습니다.
 
+## 스터디 (7/20)
+`junseo` 님 문제:
+```js
+for (var i = 0; i < 6; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+
+// 6 6 6 6 6 6
+
+for (let i = 0; i < 6; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+
+// 0 1 2 3 4 5
+```
+- `var` 로 선언한 변수는 지연되는 100밀리세컨 동안 이미 6까지 다 증가
+  - 블록이 아니라 함수 레벨에 바인딩되어 있으므로
+  - 오직 하나의 `i` 만 존재한다고 생각
+- `let` 으로 선언한 변수는 코드 블록이 반복해서 실행될 때마다 새로운 렉시컬 환경에 바인딩됨
+  - 각 환경의 `i` 는 각기 다른 값을 갖고, 유지됨
+  - 따라서 i++과 setTimeout이 동일한 렉시컬 환경 내에 있으므로, 매번 1씩 증가해서 출력됨
