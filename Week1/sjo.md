@@ -1,4 +1,8 @@
-## 📘 변수(variable)
+# Ch4. 변수
+
+<br/>
+
+## 📘 변수(variable)
 
 하나의 값을 저장하기 위해 확보한 메모리 공간 자체 또는 그 메모리 공간을 식별하기 위해 붙인 이름 ⇒ 값의 위치를 가리키는 상징적인 이름    
 <br/>
@@ -119,7 +123,7 @@ console.log(a); // ReferenceError: a is not defined
 
 ## 💡 연습문제
 
-1. 아래 코드 실행시에 출력되는 값과 그 값이 출력되는 이유는?
+**1. 아래 코드 실행시에 출력되는 값과 그 값이 출력되는 이유는?**
 
 ```jsx
 console.log(score);
@@ -129,7 +133,7 @@ var score;
 <br/>
 
 
-2. 아래 식별자 이름들 중 사용할 수 없는 식별자 이름은?
+**2. 아래 식별자 이름들 중 사용할 수 없는 식별자 이름은?**
 
 ```
 var person;
@@ -142,7 +146,7 @@ var #sjo;
 
 <br/>
 
-3. 아래 두 코드의 실행결과는? (var, let의 차이)
+**3. 아래 두 코드의 실행결과는? (var, let의 차이)**
 
 ```jsx
 function func() {
@@ -165,4 +169,66 @@ function func() {
 
 func(); 
 ```
+
+<br/>
+
+# Ch5. 표현식과 문
+
+<br/>
+
+**💡 값, 리터럴, 표현식, 문을 설명하시오.**
+
+<br/>
+
+# Ch6. 데이터 타입
+
+<br/>
+
+**💡 undefined와 null의 차이는 무엇인가? undefined 와 undeclared의 차이는 무엇인가?**
+
+<br/>
+
+# Ch7. 연산자
+
+<br/>
+
+**💡 아래 코드 실행 시 결과값을 예상해보세요.**
+
+```jsx
+var x = 1;
+
+console.log(x++); 
+
+console.log(++x);
+
+console.log(x--);
+
+var y = true;
+
+console.log(+y);
+
+console.log(y);
+
+console.log(NaN === NaN);
+```
+<br/>
+
+# Ch8. 제어문
+
+<br/>
+
+**💡 1부터 100까지 100번 반복되는 반복문이 있습니다. 3의 배수일 때는 fizz, 5의 배수일 때는 buzz, 3과 5의 공배수일 때는 fizzbuzz가 출력되는 코드를 작성해보세요. (for loop, while loop 이용)**
+
+<br/>
+
+# Ch9. 타입 변환과 단축 평가
+
+<br/>
+
+**💡 명시적 타입변환, 암묵적 타입변환 두 가지를 이용하여 var x = 10; 을 문자열 형태로 변환해 보시오.**
+
+<br/>
+
+**💡 옵셔널 체이닝 연산자와 null 병합 연산자에 대해 설명하시오.**
+
 
