@@ -137,4 +137,3 @@ let a = 'a'; //ReferenceError
 
 4) const로 선언한 변수는 반드시 선언과 동시에 초기화 해야한다.
 5) var, const, let로 선언한 변수는 객체 window의 프로퍼티가 된다.
-```
