@@ -1169,7 +1169,7 @@ let a = 'a'; //ReferenceError
 
 ---
 
-- Json.parse(Json.stringfy());
+- Json.parse(Json.stringify());
 - Scope가 생기면 리턴 써줘야. 객체를 리턴하려면 ({}) 이렇게
 - 명시가 안되어있으므로 전역변수가 됨 (지역스코프에 있어도) (b = 0)
 - 모듈에서의 전역변수…?
