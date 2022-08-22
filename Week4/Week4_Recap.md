@@ -38,12 +38,12 @@ console.log(window.b);
 - var로 선언된 변수는 전역 객체의 프로퍼티가 된다.
 - let 과 const 는 전역 객체의 프로퍼티로 들어가지 않는다.
 - 하지만 `var` 로 선언된 변수 `a` 를 `delete` 연산자로 삭제하는 것은 불가능하다. `delete` 연산자의 다음과 같은 특성 때문이다:
-	- Non-configurable 속성은 삭제 할 수 없습니다. 이것은 Math, Array, Object와 같은 built-in objects의 속성들이나 Object.defineProperty() 같은 메소드로 만든 non-configurable속성들을 포함합니다.
-	- var, let, const로 선언된 변수는 non-configurable 속성으로 구분되며, delete로 삭제될 수 없습니다.
+	- `Non-configurable` 속성은 삭제 할 수 없다. 이것은 `Math`, `Arra`y, `Object` 와 같은 `built-in objects` 의 속성들이나 `Object.defineProperty()` 같은 메소드로 만든 `non-configurable` 속성들을 포함한다.
+	- `va`r, `let`, `const` 로 선언된 변수는 `non-configurable` 속성으로 구분되며, `delete` 로 삭제될 수 없다.
 	- `var` 로 선언된 어떠한 프로퍼티라도 글로벌 스코프나 함수 스코프로부터 삭제될 수 없다.
-	- let과 const로 선언한 속성은 어느 스코프에 정의되어 있건 삭제 할 수 없습니다.
-	- 결국, delete는 글로벌 스코프의 어떤 함수도 삭제 할 수 없다. (함수 정의식이건 함수 표현식이건 삭제 불가)
-	- 오브젝트의 속성으로 있는 함수인 경우(글로벌 스코프를 제외하고)는 delete로 삭제할 수 있습니다.
+	- `let` 과 `const` 로 선언한 속성은 어느 스코프에 정의되어 있건 삭제 할 수 없다.
+	- 결국, `delete` 는 글로벌 스코프의 어떤 함수도 삭제 할 수 없다. (함수 정의식이건 함수 표현식이건 삭제 불가)
+	- 오브젝트의 속성으로 있는 함수인 경우(글로벌 스코프를 제외하고)는 `delete` 로 삭제할 수 있다.
 
 #### 래퍼 객체
 - 문자열, 숫자, 불리언 값 등에 대해 객체처럼 접근하면 생성되는 임시 객체
@@ -212,7 +212,6 @@ foo();
 - 클로저 함수 사용 시 장점은 다음과 같다 :
 	- 특정 함수만 값에 접근하여 상태 변경을 가능하게 하는 것(정보 은닉)
 
-- `Free variable` 이란?
 ```jsx
 var x = 10;
 
@@ -228,10 +227,6 @@ function foo() {
 	return bar;
 }
 ```
-
-- 중첩 함수가 외부 함수보다 오래 유지되는 경우
-
-- 해당 함수의 정의가 평가되어 함수 객체를 생성할 때, 함수 객체의 `[[Environment]]` 내부 슬롯에 함수 객체 정의 시점의 환경이 저장된다.
 
 ```jsx
 function Person(name, age) {
@@ -249,7 +244,9 @@ me.sayHi(); // Hi! I'm Jin, I'm 20.
 console.log(me.name); // 20
 console.log(me._age); // undefined
 ```
+
 - sayHi 메서드가 인스턴스 메서드이므로 Person 객체가 생성될 때마다 매번 중복 생성된다. (P.411)
+
 ```jsx
 const Person = (function () {
   let _age = 0; // private
