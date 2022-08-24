@@ -1,11 +1,5 @@
-const add = (value) => {
-  return value + 1;
+const func = () => {
+  console.log(this.x);
 };
 
-const func = { add };
-
-func.add();
-
-const arr = [1, 2, 3];
-
-console.log(arr.map(func.add));
+func.call({ x: 1 });
