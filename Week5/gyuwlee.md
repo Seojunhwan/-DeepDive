@@ -105,6 +105,7 @@ func.bind(context)
 # CH27. 배열
 length 프로퍼티와 관련지어서 짧은 문제를 내려다가 27.8의 push, pop, shift, unshift를 미리 다루게 되었습니다 😂
 
+## 1) 배열 앞과 배열 뒤
 `push` 와 `pop` 은 빠르지만 `shift` 와 `unshift` 는 느립니다. 어째서일까요?
 - `length` 프로퍼티의 조작과 (조금) 관련이 있습니다.
 
