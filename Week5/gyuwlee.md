@@ -27,6 +27,7 @@ new Rabbit(); // 결과를 예측해보세요!
 ```
 <details>
 <summary><strong>해설</strong></summary>
+
 - `new Rabbit();` 의 실행 결과는 (당연히?) `rabbit` 입니다.
 - 자식 클래스 `Rabbit`의 인스턴스가 초기화될 때, 암묵적으로 `super` 가 호출되어 부모 생성자 `constructor` 를 호출합니다. 
     - 자식 클래스에서 부모 생성자를 호출하면 오버라이딩한 메서드가 실행됩니다.
