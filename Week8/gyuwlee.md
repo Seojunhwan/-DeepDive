@@ -74,7 +74,7 @@ function Form() {
 </details>
 
 <details>
-<summary> 참고 </summary>
+<summary> <strong>참고</strong> </summary>
 
 [왜 리액트는 return false를 금지했는지?](https://stackoverflow.com/questions/31191841/react-js-cant-return-false-anymore-is-there-an-equivalent)
 
@@ -89,5 +89,65 @@ function Form() {
 리액트의 이벤트 핸들러 내부에서 return false 하는 것은, 실제 DOM 트리를 통해 전파/발생되는 nativeEvent가 아니라 **리액트의 가상 DOM 상에서 발생하는 syntheticEvent에게** false를 돌려주는 것과 같습니다.
 
 이 때 리액트의 가상 DOM은 단지 리액트에서 제공하는 API로서 실제 DOM과는 다르게 작동할 수 있으므로, 이벤트 핸들러의 return 값 역시 실제 DOM과 다르게 사용할 가능성이 있습니다. 이로 인해 명시적으로 핸들러 내부에서 preventDefault 메서드를 사용할 것이 강제됩니다!
+
+</details>
+
+<br/>
+
+## 싱글 스레드에서의 비동기 처리
+
+1. 자바스크립트는 OO OOO 방식으로 동작하지만, 브라우저는 OO OOO 방식으로 동작하기 때문에 비동기 동작이 가능해집니다.
+
+<details>
+<summary> <strong>답</strong> </summary>
+
+- 싱글 스레드, 멀티 스레드
+
+Ajax 요청, setTimeout(), 이벤트 핸들러의 등록과 같은 것들은 **웹 브라우저에서 제공하는 기능**으로, 웹 API에 속합니다.
+
+자바스크립트 엔진의 스택에서 실행된 비동기 함수는 **요청하는 비동기 작업에 대한 정보와 콜백 함수**를 **웹 API를 통해** 브라우저에게 넘기고, 브라우저는 전달받은 타이머 작업을 별도의 쓰레드에게 위임합니다.
+
+그러고 나면 **자바스크립트 엔진의 스택**에서는 **해당 작업의 스택 프레임이 즉시 팝** 됩니다.
+
+</details>
+
+<br/>
+
+2. `setTimeout` 또는 이벤트 핸들러 등 일부 웹 API들은 인자로 평가값이 아닌 **함수**를 받습니다. 그 이유는 무엇일까요?
+
+<details>
+<summary> <strong>답</strong> </summary>
+
+브라우저가 내부적으로 **비동기 작업에 대한 정보**와 **콜백 함수**를 분리해서 처리하기 때문입니다.
+
+다시 말하면, 비동기적으로 실행하고자 하는 **콜백 함수**만 따로 분리되어 태스크 큐에 저장되기 때문에 실행 가능한 함수 형태로 전달되어야 합니다.
+
+[시각화](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
+
+```js
+$.on("button", "click", function onClick() {
+  setTimeout(function timer() {
+    console.log("You clicked the button!");
+  }, 2000);
+});
+
+console.log("Hi!");
+
+setTimeout(function timeout() {
+  console.log("Click the button!");
+}, 5000);
+
+console.log("Welcome to loupe.");
+```
+
+위 코드의 실행 과정은 아래와 같습니다:
+
+1. setTimeout() 함수가 실행되면 자바스크립트 엔진은 웹 API를 통해 브라우저에게 setTimeout() 작업을 요청하면서 콜백 함수를 전달합니다.
+
+2. 브라우저는 이러한 타이머 작업을 별도의 쓰레드에게 위임합니다.
+
+3. 그러고 나면 자바스크립트 엔진의 스택에서는 setTimeout() 함수의 스택 프레임이 즉시 팝 됩니다.
+
+4. 인자로 명시한 시간이 흐르고 나면 해당 타이머 작업을 처리하고 있던 쓰레드는 전달받았던 콜백 함수를 자바스크립트 엔진의 태스크 큐에 집어넣게 됩니다.
 
 </details>
